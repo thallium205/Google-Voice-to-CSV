@@ -1,0 +1,6 @@
+1) Go to https://www.google.com/takeout/, select "Choose Services", and select "Voice" and create an archive.
+2) After you download the file, extract it and navigate to the "conversations" folder.
+3) Place GoogleVoiceToCSV.jar into this folder and run it.  (You need to have the Java runtime environment).
+4) Wait a couple seconds, and look for "Text_Messages.csv".  
+
+TODO: Export date in a better format, include voice messages in sort, export to sql databse.
