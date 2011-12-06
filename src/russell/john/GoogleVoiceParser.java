@@ -107,7 +107,7 @@ public class GoogleVoiceParser
 				String dateString = node.getChildren().extractAllNodesThatMatch(filterDate, false).toHtml();
 				String nameString = node.getChildren().extractAllNodesThatMatch(filterSender, true).toHtml();				
 				String telephoneString = node.getChildren().extractAllNodesThatMatch(filterTelephone, false).toString();
-				String messageString = node.toHtml();
+				String messageString = node.getChildren().elementAt(9).toPlainTextString();
 				
 				// Get the date
 				textType.setDate(dateString.substring(dateString.indexOf("title=\"") + 7, dateString.length() - 2));
@@ -123,8 +123,8 @@ public class GoogleVoiceParser
 				// Get the number
 				textType.setNumber(telephoneString.substring(telephoneString.indexOf("tel:") + 4, telephoneString.indexOf(";")));
 				
-				// Get the message
-				textType.setMessage(messageString.substring(messageString.indexOf("<q>") + 3, messageString.indexOf("</q>")));
+				// Get the message (the "toPlainTextString()" is not properly rendering apostrophes right, so we will fix it				
+				textType.setMessage(messageString.replace("&#39", "'").replace("';", "'"));
 				
 				// Store it
 				textMessages.add(textType);						
